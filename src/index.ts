@@ -6,6 +6,20 @@ const app: Application = express();
 const port = 8000;
 require('dotenv').config();
 var mysql = require('mysql');
+const sql = require("mssql");
+require("msnodesqlv8");
+const conn = new sql.Connection({
+  database: "chatteldb",
+  server: "DESKTOP-HEE5QI7",
+  driver: "msnodesqlv8",
+  options: {
+    trustedConnection: true
+  }
+});
+conn.connect().then(() => {
+  // ... sproc call, error catching, etc
+  // example: https://github.com/patriksimek/node-mssql#request
+});
 app.use(express.json());
 app.use(               
   express.urlencoded({
