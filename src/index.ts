@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 const app: Application = express();
 const port = 8000;
 require('dotenv').config();
+var mysql = require('mysql');
 app.use(express.json());
 app.use(               
   express.urlencoded({
