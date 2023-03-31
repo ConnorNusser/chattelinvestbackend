@@ -5,14 +5,18 @@ import bodyParser from "body-parser";
 const app: Application = express();
 const port = 8000;
 require('dotenv').config();
-const sql = require("mssql");
+var sql = require("mssql");
 require("msnodesqlv8");
 const conn = new sql.ConnectionPool({
   database: "chatteldb",
   server: "localhost",
   driver: "msnodesqlv8",
+  user: "admin",
+  password: "JJnzrcZK3mLL",
   options: {
-    trustedConnection: true
+    trustedConnection: true,
+    trustServerCertificate: true,
+    useUTC: true
   }
 });
 conn.connect().then(() => {
