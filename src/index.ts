@@ -7,7 +7,7 @@ const port = 8000;
 require('dotenv').config();
 var sql = require("mssql");
 require("msnodesqlv8");
-const conn = new sql.ConnectionPool({
+export const dbConnection = new sql.ConnectionPool({
   database: "chatteldb",
   server: "localhost",
   driver: "msnodesqlv8",
@@ -19,9 +19,8 @@ const conn = new sql.ConnectionPool({
     useUTC: true
   }
 });
-conn.connect().then(() => {
-  // ... sproc call, error catching, etc
-  // example: https://github.com/patriksimek/node-mssql#request
+dbConnection.connect().then(() => {
+  console.log("Connected to db")
 });
 app.use(express.json());
 app.use(               
